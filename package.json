@@ -1,0 +1,23 @@
+{
+  "name": "picospardos",
+  "version": "1.0.0",
+  "description": "tfg aplicacion web de un bar",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node ./server/build/index.js",
+    "build": "babel ./server/src -d ./server/build",
+    "nodemon": "nodemon --exec npx babel-node ./server/src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
+  }
+}
