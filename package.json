@@ -6,10 +6,12 @@
   "scripts": {
     "start": "npm run build && node ./server/build/index.js",
     "build": "babel ./server/src -d ./server/build",
-    "nodemon": "nodemon --exec npx babel-node ./server/src/index.js"
+    "nodemon": "nodemon ./server/src/index.js",
+    "test": "node ./server/src/index.js"
   },
   "author": "",
   "license": "ISC",
+  "type": "module",
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@babel/node": "^7.16.8",
@@ -17,7 +19,17 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10",
+    "morgan": "^1.10.0",
+    "rotating-file-stream": "^3.0.3"
   }
 }
