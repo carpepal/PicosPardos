@@ -8,14 +8,14 @@ router.route('/')
         res.status(200).json({message:"has entrado en una zona publica"});
     });
 
-router.route('/productos')
-    .all(getProductos);
+// router.route('/productos')
+//     .all(getProductos);
 
-router.route('/productos/:id')
-    .all(getProductoById);
+// router.route('/productos/:id')
+//     .all(getProductoById);
 
-router.route('/productos/:id/comments')
-    .all(getCommentsByProductoId);
+// router.route('/productos/:id/comments')
+//     .all(getCommentsByProductoId);
 
 
 
