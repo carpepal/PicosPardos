@@ -19,9 +19,10 @@ export async function insertUser(user) {
                 default:
                     break;
             }
+        }else{
+            error[value] = "required";
         }
     })
-
     if (Object.keys(error).length !== 0) {
         throw error;
         console.log(error);
@@ -34,14 +35,10 @@ export async function insertUser(user) {
             { email: user.email }
         ]
     });
-
     if (auxUser !== null) {
-
         throw { message: "el usuario ya existe" }
         console.log(auxUser);
     }
-
-    
     
     //crea el usuario
     let usarSave = new User({
@@ -52,10 +49,10 @@ export async function insertUser(user) {
     
     //encrypta la contraseña
     await usarSave.encryptPassword(usarSave);
+
     //guarda el usuario
     usarSave.save();
     
-
     //retorna el usuario
     return {
         _id: usarSave._id,
