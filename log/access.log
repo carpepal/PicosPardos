@@ -1,0 +1,5 @@
+::ffff:127.0.0.1 - - [20/Apr/2022:08:45:15 +0000] "GET /api/public HTTP/1.1" 200 45 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0"
+::ffff:127.0.0.1 - - [20/Apr/2022:08:45:35 +0000] "GET /api/public/productos HTTP/1.1" 500 1633 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0"
+::ffff:127.0.0.1 - - [20/Apr/2022:08:46:20 +0000] "GET /api/public/productos HTTP/1.1" 500 1633 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0"
+::ffff:127.0.0.1 - - [20/Apr/2022:08:46:41 +0000] "GET /api/public/productos HTTP/1.1" 500 44 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0"
+::ffff:127.0.0.1 - - [20/Apr/2022:08:47:48 +0000] "GET /api/public/productos HTTP/1.1" 200 11574 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0"

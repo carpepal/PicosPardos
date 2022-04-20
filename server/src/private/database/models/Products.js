@@ -2,22 +2,14 @@ import mongoose from "mongoose"; //import mongoose libreria de base de datos
 
 //creacion de esquema de productos
 const product = new mongoose.Schema({
-    // name: {
-    //     type: String,
-    //     required: true
-    // },
-    // price: {
-    //     type: Number,
-    //     required: true
-    // },
-    // type: {
-    //     type: Array,
-    //     required: true
-    // },
-    // alergeno: {
-    //     type: Array,
-    //     required: false
-    // }
+    type:[{ 
+            type: String,
+            required: true,
+        }],
+    alergeno:[ {
+        type: String,
+        required: false
+    }],
     category: {
         type: String,
         required: true,
@@ -50,7 +42,14 @@ const product = new mongoose.Schema({
         type: String,
         required: true,
         unique:true
-    }
+    },
+    comments:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "comments",
+            required: false,
+        }
+    ]
 });
 
 export default mongoose.model("product", product);

@@ -21,7 +21,7 @@ router.route('/register')
 //ruta de verificacion de token privadas
 router.use('/private', auth.verifyToken, privateRoutes);
 //rutas publicas
-router.use('/', publicRoutes);
+router.use('/public', publicRoutes);
 
 //prueba 
 router.route('/prueba')
