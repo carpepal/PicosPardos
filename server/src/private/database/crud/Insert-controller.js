@@ -44,7 +44,7 @@ export async function insertUser(user) {
     let usarSave = new User({
         ...user,
         create_at: new Date(),
-        token: jsonwebtoken.sign({_id:user._id , username: user.username , iat: Date.now()} , process.env.SECRETKEY , {expiresIn: "1m"})
+        token: jsonwebtoken.sign({id:user._id , username: user.username , iat: Date.now()} , process.env.SECRETKEY , {expiresIn: "1m"})
     })
     
     //encrypta la contraseña

@@ -47,7 +47,14 @@ const user = new mongoose.Schema({
         required: true,
         enum:['admin','user'],
         default: 'user'
-    }
+    },
+    comments:[
+        {
+            type: mongoose.Types.ObjectId ,
+            ref:'comment',
+            required:false,
+        }
+    ]
 });
 
 //definicion de funciones de usuario

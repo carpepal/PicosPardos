@@ -26,7 +26,7 @@ export async function singin(req, res) {
         //valida que la contraseña sea correcta
         if (await user.matchPassword(password)) {
             //genera el token
-            let token = jsonwebtoken.sign({ _id: user._id, username: user.username, iat: Date.now() }, process.env.SECRETKEY, { expiresIn: "1h" })
+            let token = jsonwebtoken.sign({ id: user._id, username: user.username, iat: Date.now() }, process.env.SECRETKEY, { expiresIn: "1h" })
             //modifica el usuario para que tenga el token
             await Users.updateOne({username:user.username} , {$set:{token:token}});
             //retorna el token
@@ -84,7 +84,7 @@ export async function singup(req , res){
  */
 export async function verifyToken(req , res , next){
     //recoge el token de la peticion
-    const token = req.headers.authorization;
+    const token = req.headers.authorization || req.headers.authentication;
     //valida que el token exista y sea correcto
     let data = jsonwebtoken.verify(token , process.env.SECRETKEY , {complete: true} , async (err , decode)=>{
         //si hay un error
