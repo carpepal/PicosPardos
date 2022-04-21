@@ -10,17 +10,13 @@ const product = new mongoose.Schema({
         type: String,
         required: false
     }],
-    category: {
-        type: String,
-        required: true,
-    },
     description: {
         type: String,
         required: true,
     },
     image: {
         type: String,
-        required: true,
+        required: false,
     },
     price: {
         type: Number,
@@ -38,7 +34,7 @@ const product = new mongoose.Schema({
                 default: 0,
             }
         },
-    title:{
+    name:{
         type: String,
         required: true,
         unique:true
