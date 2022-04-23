@@ -12,22 +12,76 @@ export function getProductos(req , res){
     }
     Product.aggregate([
         {
-            $lookup:{
-                from: "users",
-            }
+          $unwind:{
+            path:"$comments",
+            preserveNullAndEmptyArrays:true
+          }
+        },
+        {
+          $lookup: {
+            from: 'comments',
+            localField: 'comments.id',
+            foreignField: '_id',
+            pipeline: [
+              {
+                $lookup: {
+                  from: 'users',
+                  localField: 'user_id',
+                  foreignField: '_id',
+                  pipeline:[
+                    {
+                      $project:{
+                        name:1,
+                        email:1
+                      }
+                    }
+                  ],
+                  as: 'user'
+                }
+              },
+              {
+              $project: {
+                user:1,
+                comment:1
+                }
+              }
+            ],
+            as: 'comments'
+        }},
+        {
+          $project: {
+            _id: 1,
+            name: 1,
+            description: 1,
+            price: 1,
+            comments: 1
+          }
+        },
+        { 
+          "$group": {
+            "_id": "$_id",
+            "description": { "$first": "$description" },
+            "price": { "$first": "$price" },
+            "comments": { "$push": { "$first": "$comments" } }
+          }
         }
-    ])
-    // Product.find(buscador).exec(function(err, productos){
-    //     if(err){
-    //         res.status(500).send({
-    //             message: "Error al obtener los productos"
-    //         });
-    //     }else{
-    //         res.status(200).send({
-    //             productos
-    //         });
-    //     }
-    // });
+      ]).exec((err, productos) => {
+          if(err){
+                res.status(500).send({
+                    message: "Error en la peticion"
+                });
+            }else{
+                if(!productos){
+                    res.status(404).send({
+                        message: "No hay productos"
+                    });
+                }else{
+                    res.status(200).send({
+                        productos
+                    });
+                }
+            }
+      })
 }
 
 export async function getUserbyJwt(req , res){
@@ -63,6 +117,20 @@ export async function getPedidosByJwt(req , res){
 export async function getCommentsById(req , res){
     let {id} = req.params;
     let comments = await comments.find({product_id: id});
+    if(Object.keys(comments).length !== 0){
+        res.status(200).json({
+            comments
+        });
+    }else{
+        res.status(404).json({
+            error:true,
+            message: "No se encontro el producto"
+        })
+    }
+}
+
+export async function getComments(req , res){
+    let comments = await Comments.find();
     if(Object.keys(comments).length !== 0){
         res.status(200).json({
             comments

@@ -10,6 +10,7 @@ const orders = new mongoose.Schema({
     products: [
         {
             type: mongoose.Types.ObjectId,
+            required: true,
             ref: 'products'
         }
     ],
@@ -19,7 +20,8 @@ const orders = new mongoose.Schema({
     },
     date_at: {
         type: Date,
-        required: true
+        required: true , 
+        default: new Date()
     }
 })
 

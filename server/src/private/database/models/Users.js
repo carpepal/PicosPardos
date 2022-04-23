@@ -15,6 +15,7 @@ const user = new mongoose.Schema({
     create_at:{
         type: Date,
         required:true,
+        default: new Date()
     },
     password:{
         type:String,

@@ -1,4 +1,7 @@
 import User from '../models/Users.js';
+import Product from '../models/Products.js';
+import Order from '../models/Orders.js';
+import Comment from '../models/Comments.js';
 import jsonwebtoken from 'jsonwebtoken';
 
 
@@ -59,6 +62,132 @@ export async function insertUser(user) {
         username: usarSave.username,
         email: usarSave.email,
         token: usarSave.token
+    }
+}
+
+export async function insertProduct(product){
+    //valida los campos del producto
+    let fields = ["name", "price", "description", "type", "stock"];
+    let error = {};
+    fields.forEach((value, index) => {
+        if (value in product) {
+            switch (product[value]) {
+                case "" || null || undefined || 0:
+                    error[value] = "required";
+                default:
+                    break;
+            }
+        }else{
+            error[value] = "required";
+        }
+    })
+    if (Object.keys(error).length !== 0) {
+        throw error;
+    }
+
+    //valida que el producto no exista
+    let auxProduct = await Product.findOne({
+        $and: [
+            { name: product.name },
+            { price: product.price }
+        ]
+    });
+    if (auxProduct !== null) {
+        throw { message: "el producto ya existe" }
+    }
+
+    //crea el producto
+    let productSave = new Product({
+        ...product,
+        create_at: new Date()
+    })
+
+    //guarda el producto
+    productSave.save();
+    
+    //retorna el producto
+    return {
+        _id: productSave._id,
+        name: productSave.name,
+        price: productSave.price,
+        description: productSave.description,
+        category: productSave.category,
+        stock: productSave.stock
+    }
+}
+
+export async function insertComment(comment){
+    //valida los campos del comentario
+    let fields = ["comment", "user_id" , "product_id"];
+    let error = {};
+    fields.forEach((value, index) => {
+        if (value in comment) {
+            switch (comment[value]) {
+                case "" || null || undefined || 0:
+                    error[value] = "required";
+                default:
+                    break;
+            }
+        }else{
+            error[value] = "required";
+        }
+    })
+    if (Object.keys(error).length !== 0) {
+        throw error;
+    }
+
+    //crea el comentario
+    let commentSave = new Comment({
+        ...comment,
+        create_at: new Date()
+    })
+
+    //guarda el comentario
+    commentSave.save();
+    
+    //retorna el comentario
+    return {
+        _id: commentSave._id,
+        comment: commentSave.comment,
+        user: commentSave.user_id,
+        product: commentSave.product_id,
+    }
+}
+
+export async function insertOrder(order){
+    //valida los campos del pedido
+    let fields = ["user_id" , "products" , "total_price"];
+    let error = {};
+    fields.forEach((value, index) => {
+        if (value in order) {
+            switch (order[value]) {
+                case "" || null || undefined || 0:
+                    error[value] = "required";
+                default:
+                    break;
+            }
+        }else{
+            error[value] = "required";
+        }
+    })
+    if (Object.keys(error).length !== 0) {
+        throw error;
+    }
+
+    //crea el pedido
+    let orderSave = new Order({
+        ...order,
+        create_at: new Date()
+    })
+
+    //guarda el pedido
+    orderSave.save();
+    
+    //retorna el pedido
+    return {
+        _id: orderSave._id,
+        user: orderSave.user_id,
+        product: orderSave.product_id,
     }
 }
 

@@ -2,6 +2,11 @@ import mongoose from "mongoose"; //import mongoose libreria de base de datos
 
 //creacion de esquema de productos
 const product = new mongoose.Schema({
+    name:{
+        type: String,
+        required: true,
+        unique:true
+    },
     type:[{ 
             type: String,
             required: true,
@@ -22,6 +27,11 @@ const product = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    stock:{
+        type: Number,
+        required: true,
+        default: 0,
+    },
     rating: {
             rate: {
                 type: Number,
@@ -34,10 +44,10 @@ const product = new mongoose.Schema({
                 default: 0,
             }
         },
-    name:{
-        type: String,
-        required: true,
-        unique:true
+    create_at:{
+        type: Date,
+        required:true,
+        default: new Date()
     },
     comments:[
         {

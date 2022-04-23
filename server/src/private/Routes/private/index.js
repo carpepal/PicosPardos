@@ -7,13 +7,20 @@ import Users from "../../database/models/Users.js";
 //creacion del objeto router
 const router = express.Router();
 
+//rutas de admin
 router.use('/admin' ,auth.verifyAdminRole, adminRoutes);
 
+//rutas de gestion de usuario
 router.route('/user')
-    .all(find.getUserbyJwt);
+    .get(find.getUserbyJwt);
 
+//rutas de gestion de pedidos
 router.route('/pedidos')
-    .all(find.getPedidosByJwt);
+    .get(find.getPedidosByJwt);
+
+//rutas de gestion de comentarios
+router.route('/comments')
+    .get(find.getComments);
 
 export default router;
 
