@@ -93,7 +93,7 @@ export async function verifyToken(req , res , next){
             return;
         }
         //si el token es correcto recoge el usuario
-        let user = Users.findById(decode._id);
+        let user = Users.findById(decode.id);
         //si el usuario no existe
         if(user !== null && user.username === decode.username){
             //guarda el usuario en la peticion

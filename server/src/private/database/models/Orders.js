@@ -14,6 +14,11 @@ const orders = new mongoose.Schema({
             ref: 'products'
         }
     ],
+    status:{
+        type: String,
+        required: true,
+        enum: ['pending', 'delivered', 'canceled'],
+    },
     total_price: {
         type: Number,
         required: true
