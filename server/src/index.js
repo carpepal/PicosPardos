@@ -24,7 +24,7 @@ app.use(cors());//solucion de error cors
 app.use(helmet())//seguridad de cabeceras
 app.use(express.json());//entrada de datos en formato json
 app.use(express.urlencoded({extended:true}));//entrada de datos en formato urlencoded
-app.use(express.static(process.cwd()+"/Client/public"));//servicio de archivos estaticos
+app.use(express.static(process.cwd()+"/Client/build"));//servicio de archivos estaticos
 app.use('/api' , api);//rutas del api
 
 //ruta general del servidor
