@@ -1,21 +1,22 @@
-// import React from 'react'
-// import {useDispatch, useSelector} from 'react-redux'
-// import { reduxForm , Field } from 'redux-form'
+import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {Field , reduxForm} from 'redux-form'
 
-// const UserFormulario = () => {
+const UserForm = () => {
 
-//   return (
-//     <form>
-//         <label htmlFor="username">
-//             <Field name="username" component="input" type="text" placeholder="Username"/>
-//         </label>
-//     </form>
-//   )
-// }
+  return (
+    <form name='Login'>
+        <label htmlFor="username">
+            <Field name="username" component="input" type="text" placeholder="Username"/>
+        </label>
+    </form>
+  )
+}
 
-
-// UserFormulario = reduxForm({
-//     form: 'userForm'
-// })(UserFormulario)
-
-// export default UserFormulario
+const validate  = values => {
+    
+}
+export default reduxForm({
+    form: "login",
+    validate
+})(UserForm)

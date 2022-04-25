@@ -6,6 +6,7 @@ import UserForm from './Components/UserForm'
 const PicosPardos = () => {
   return (
     <>
+      <UserForm />
         <Login/>
     </>
   )

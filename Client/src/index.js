@@ -10,10 +10,10 @@ import { store } from './config/redux/store';
 
 
 ReactDOM.render(
-  // <Provider store = {store}>
-  <BrowserRouter>
-    <PicosPardos />
-  </BrowserRouter>
-  // </Provider>,
-  ,document.getElementById('root')
+  <Provider store = {store}>
+    <BrowserRouter>
+      <PicosPardos />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
 );
