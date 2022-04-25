@@ -5,7 +5,12 @@ import {useForm} from '../Services/hooks/useForm.js'
 
 const Navbar = () => {
 
-    const { values, handleChange, reset } = useForm({})
+    const { values, handleInputChange, reset } = useForm({})
+    
+    const handleChange = (e) => {
+        
+            
+    }
 
     return (
         <nav>
@@ -29,13 +34,9 @@ const Navbar = () => {
                                 name={'search'}
                                 placeholder={'Buscar....'}
                                 type={'text'}
+                                handleChange={handleInputChange}
                             />
-                            {/* <div className='input'>
-                            <input type="text" name='search' placeholder='Search....'/>
-                            <div className="icon">
-                               <i className='material-icons'>search</i>
-                            </div>
-                        </div> */}
+                            
                         </div>
                     </div>
                 </div>
