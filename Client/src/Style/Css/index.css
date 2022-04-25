@@ -46,12 +46,21 @@ nav {
 }
 .navbar_search-box:hover {
   border: 1px solid #f2f2f2;
+  outline: none;
 }
 .navbar_search-box .input {
   border-bottom: 1px solid #000000;
+  background: transparent;
+}
+.navbar_search-box .icon {
+  display: inline;
 }
 .navbar_search-box input {
   border: 0;
+  background: transparent;
+}
+.navbar_search-box input:focus-visible {
+  outline: none;
 }
 
 html, body {
