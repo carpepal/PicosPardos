@@ -7,7 +7,6 @@ const PicosPardos = () => {
   return (
     <>
       <UserForm />
-        <Login/>
     </>
   )
 }

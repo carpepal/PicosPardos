@@ -1,9 +1,9 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { reducer as FormReducer} from 'redux-form'  
+import { combineReducers } from "@reduxjs/toolkit";  
+import LoginFormSlice  from "../../Services/reducers/LoginSlice.js";
 
 
 const RootReducer = combineReducers({
-    form: FormReducer
+    form: LoginFormSlice
 })
 
 

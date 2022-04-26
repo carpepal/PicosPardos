@@ -30,12 +30,7 @@ const Navbar = () => {
                     </div>
                     <div className='navbar_button'>
                         <div className="navbar_search-box">
-                            <CustomInput
-                                name={'search'}
-                                placeholder={'Buscar....'}
-                                type={'text'}
-                                handleChange={handleInputChange}
-                            />
+                            
                             
                         </div>
                     </div>
