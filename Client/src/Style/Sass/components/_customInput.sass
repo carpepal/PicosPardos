@@ -1,14 +1,22 @@
 .custom-input
     display: flex
-    flex-direction: column
+    flex-direction: row
     justify-content: center
 
     div
+        display: flex
+        justify-content: center
+        align-items: flex-end
         padding: 0.5rem 0.5rem 0.5rem 0.5rem
+        align-content: bottom
+        
 
     label
         font-weight: bolder
         font-size: 1.2rem
+        display: flex
+        justify-content: center
+        align-items: flex-end
         
 
     input
@@ -25,7 +33,7 @@
             outline: none
             border-bottom: 2px solid #000
         &::placeholder
-            color: #ccc
+            color: #3b3b3b
             padding: 0.5rem 0
     .error
             border-bottom: 2px solid #f00 

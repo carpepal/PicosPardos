@@ -15,6 +15,22 @@ export const RegisterFetch = createAsyncThunk(
     }
 )
 
+export const LoginFetch = createAsyncThunk(
+    'login/post',
+    async (data , {getState,dispatch})=>{
+        const response = await fetch('/api/login',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(data)
+        });
+        const json = await response.json();
+        console.log(getState());
+        return json;
+    }
+)
+
 const initialRegisterData = {
     name:'' ,
     username:'',
@@ -44,9 +60,9 @@ const LoginFormSlice = createSlice({
         setRegisterData: (state, action) => {
             return {
                 ...state,
-                registerData:{
+                [action.payload.name]:{
                     ...state.registerData,
-                    ...action.payload
+                    ...action.payload.data
                 }
             }
         },
