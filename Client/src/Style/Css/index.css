@@ -63,6 +63,48 @@ nav {
   outline: none;
 }
 
+.custom-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.custom-input div {
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+.custom-input label {
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+.custom-input input {
+  border: none;
+  border-bottom: 1px solid #787878;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem;
+  width: 80%;
+  transition: border-bottom 0.3s ease-in-out;
+  margin: 0.5rem 0.5rem 0.5rem 0.8rem;
+}
+.custom-input input:focus {
+  outline: none;
+  border-bottom: 2px solid #000;
+}
+.custom-input input::placeholder {
+  color: #ccc;
+  padding: 0.5rem 0;
+}
+.custom-input .error {
+  border-bottom: 2px solid #f00;
+  background: #fdd;
+}
+.custom-input .error-message {
+  color: #f00;
+  font-size: 1rem;
+  font-weight: bolder;
+  padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+}
+
 html, body {
   height: 100vh;
   width: 100vw;
