@@ -5,7 +5,7 @@ import {useForm} from '../Services/hooks/useForm.js'
 
 const Navbar = () => {
 
-    const { values, handleInputChange, reset } = useForm({})
+    const { values, handleInputChange, reset } = useForm({});
     
     const handleChange = (e) => {
         
@@ -29,10 +29,7 @@ const Navbar = () => {
                         <NavLink to="/carrito">Carrito</NavLink>
                     </div>
                     <div className='navbar_button'>
-                        <div className="navbar_search-box">
-                            
-                            
-                        </div>
+                        
                     </div>
                 </div>
             </div>

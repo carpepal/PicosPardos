@@ -1,9 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {Field , reduxForm} from 'redux-form'
 import CustomInput from './CustomInput'
-import { setRegisterData, RegisterFetch , setRegisterError} from '../Services/reducers/LoginSlice'
-import {UserIcon} from '@heroicons/react/solid';
+import { setRegisterData, RegisterFetch , setRegisterError} from '../Services/reducers/FormSlice.js'
 
 
 //componente de formulario de registro
@@ -25,10 +23,10 @@ const UserForm = () => {
     let error = validate({name , username, password , email , phone});
     if(Object.keys(error).length !== 0){
       console.log('error' , error);
-      dispatch(setRegisterError(error));
+      dispatch(setRegisterError({name:"registerData" ,data:error}));
       return;
     }else{
-      dispatch(setRegisterError(error));
+      dispatch(setRegisterError({name:"registerData" ,data:{error}}));
       dispatch(RegisterFetch({name , username, password , email , phone})).then(res => console.log(res));
       console.log('Enviado');
     }

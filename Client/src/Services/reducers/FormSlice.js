@@ -26,7 +26,7 @@ export const LoginFetch = createAsyncThunk(
             body:JSON.stringify(data)
         });
         const json = await response.json();
-        console.log(getState());
+        
         return json;
     }
 )
@@ -42,7 +42,8 @@ const initialRegisterData = {
 
 const initialData = {
     username:'',
-    password:''
+    password:'',
+    error:'',
 }
 
 const LoginFormSlice = createSlice({
@@ -61,52 +62,26 @@ const LoginFormSlice = createSlice({
             return {
                 ...state,
                 [action.payload.name]:{
-                    ...state.registerData,
+                    ...state[action.payload.name],
                     ...action.payload.data
                 }
             }
         },
         setRegisterError: (state, action) => {
             console.log('error',action.payload);
-            // if (!action.payload) {
-            //     console.log("no error");
-            //     return {
-            //         ...state,
-            //         registerData:{
-            //             ...state.registerData,
-            //             error:''
-            //         }
-            //     }
-            // }
             return {
                 ...state,
-                registerData:{
-                    ...state.registerData,
-                    error:action.payload
+                [action.payload.name]:{
+                    ...state[action.payload.name],
+                    error:action.payload.data
                 }
             }
         },
-        setLoginData: (state, action) => {
-            state.loginData = action.payload;
-        },
-        setSuccess: (state, action) => {
-            state.success = action.payload;
-        },
-        setError: (state, action) => {
-            state.error = action.payload;
-        },
-        setLoading: (state, action) => {
-            state.loading = action.payload;
-        },
-        setRegister: (state, action) => {
-            state.register = action.payload;
-        },
-        setLogin: (state, action) => {
-            state.login = action.payload;
-        }
     },
     extraReducers: {
+        //add async thunk for register
         [RegisterFetch.fulfilled]: (state, action) => {
+            localStorage.setItem('token',action.payload.token);
             state.success = action.payload.message;
             state.loading = false;
             state.register = false;
@@ -120,7 +95,27 @@ const LoginFormSlice = createSlice({
             state.error = action.error;
             state.loading = false;
             state.register = false;
+        },
+        //add async thunk for login
+        [LoginFetch.fulfilled]: (state, action) => {
+            localStorage.setItem('token',action.payload.token);
+            state.success = action.payload.message;
+            state.loading = false;
+            state.login = false;
+            state.loginData = initialData;
+            state.error = '';
+
+        },
+        [LoginFetch.pending]: (state, action) => {
+            state.loading = true;
+        },
+        [LoginFetch.rejected]: (state, action) => {
+            state.error = action.error;
+            state.loading = false;
+            state.login = false;
         }
+
+
     }
 });
 

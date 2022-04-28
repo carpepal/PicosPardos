@@ -1,5 +1,4 @@
 import React from 'react'
-import {SearchCircleIcon} from '@heroicons/react/solid'
 
 const CustomInput = ({label ,handleInputChange , error, ...props}) => {
     return (
