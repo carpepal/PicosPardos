@@ -17,36 +17,29 @@ const PicosPardos = () => {
   return (
     <>
       <Navbar />
+      <Suspense fallback={<Loading />}>
       <Routes>
         <Route
           path='/'
           element={
-            <Suspense fallback= {<Loading/>}>
             <HomePage />
-            </Suspense>
           } />
         <Route
           path='/login'
           element={
-            <Suspense fallback= {<Loading/>}>
             <LoginPage />
-            </Suspense>
           } />
         <Route
           path='/register'
           element={
-            <Suspense fallback= {<Loading/>}>
             <RegisterPage />
-            </Suspense>
           } />
         <Route
           path='/admin'
           element={
             <PrivateRoute>
               <AdminRoute>
-                <Suspense fallback={<Loading/>}>
                   <AdminPage />
-                </Suspense>
               </AdminRoute>
             </PrivateRoute>
           } />
@@ -54,20 +47,17 @@ const PicosPardos = () => {
           path='/user'
           element={
             <PrivateRoute>
-              <Suspense fallback= {<Loading/>}>
               <UserPage />
-              </Suspense>
             </PrivateRoute>
           } />
         <Route
           path='*'
           element={
-            <Suspense fallback= {<Loading/>}>
             <ErrorPage />
-            </Suspense>
           } />
 
       </Routes>
+      </Suspense>
     </>
   )
 }

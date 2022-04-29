@@ -1,4 +1,5 @@
 import express from "express";//enrutado
+// import expressCpsHeader , {INLINE , NONE , SELF} from "express-cps-header";//enrutado
 import morgan from "morgan";//registro de peticiones
 import cors from "cors";//error cors
 import helmet from "helmet";//seguridad de cabeceras
@@ -20,6 +21,13 @@ let stream = rfs.createStream('access.log' , {
 
 //middlewares
 app.use(morgan('combined' , {stream:stream}));//registro de peticiones
+// app.use(expressCpsHeader({
+//     directives:{
+//         'default-src':[NONE],
+//         'script-src':[SELF , INLINE , 'http://localhost:3000'],
+
+//     }
+// }))
 app.use(cors());//solucion de error cors
 app.use(helmet())//seguridad de cabeceras
 app.use(express.json());//entrada de datos en formato json
@@ -30,7 +38,7 @@ app.use('/api' , api);//rutas del api
 //ruta general del servidor
 app.get('/*' , (req , res)=>{
     console.log();
-    res.sendFile(process.cwd()+"/Client/public/index.html");
+    res.sendFile(process.cwd()+"/Client/build/index.html");
 })
 
 //inicio del servidor

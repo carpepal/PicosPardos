@@ -8,11 +8,11 @@ const PrivateRoute = ({ children }) => {
 
     if(success){
         return children;
+    }else{
+        return <Navigate to="/login"/>
     }
 
-    if(error){
-        return <Navigate to="/login" />
-    }
+   
 }
 
 export default PrivateRoute

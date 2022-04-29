@@ -5,6 +5,7 @@ const initialstate = {
     success: "",
     error: "",
     isloading: false,
+    isAdminloading: false,
     token: "",
     isAdmin: false,
 };
@@ -72,15 +73,15 @@ const UserSlice = createSlice({
 
         //verifica si el usuario es administrador
         [verifyAdminRole.pending]: (state, action) => {
-            state.isloading = true;
+            state.isAdminloading = true;
         },
         [verifyAdminRole.fulfilled]: (state, action) => {
-            state.isloading = false;
+            state.isAdminloading = false;
             state.isAdmin = action.payload.isAdmin;
             state.error = '';
         },
         [verifyAdminRole.rejected]: (state, action) => {
-            state.isloading = false;
+            state.isAdminloading = false;
             state.error = action.payload;
         }
     }
