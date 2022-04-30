@@ -5,6 +5,6 @@ import UserSlice from '../../Services/reducers/UserSlice.js';
 export const store = configureStore({
     reducer:{
         Forms: FormSlice,
-        User: UserSlice
+        auth: UserSlice
     },
 })

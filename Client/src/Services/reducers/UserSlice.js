@@ -42,7 +42,7 @@ export const verifyAdminRole = createAsyncThunk(
     }
 );
 const UserSlice = createSlice({
-    name: "user",
+    name: "auth",
     initialState: initialstate,
     reducers: {
         setUser(state, action) {
