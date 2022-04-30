@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import '../src/Style/Css/index.css'
+import '../src/Style/Css/main.css'
 import Navbar from './Layouts/Navbar'
 import Loading from './Components/Loading'
 import AdminRoute from './Routes/AdminRoute'
