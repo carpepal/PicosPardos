@@ -37,12 +37,19 @@ const Navbar = () => {
     const handleChange = (e) => {
     }
 
-    const handleClick = (e) => {
+    const handleNavigation = (e) => {
 
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            console.log(values);
+            reset();
+        }
+    }
+
     return (
-        <Disclosure as="nav" className='bg-gray-800'>
+        <Disclosure as="nav" className='bg-gray-800 sticky top-0'>
             {({ open }) => (
                 <>
                     <div className='max-w-7xl mx-1 px-2 w-full sm:px-6  lg:px-8'>
@@ -76,9 +83,9 @@ const Navbar = () => {
                                                 {item.name}
                                             </a>
                                         ))}
-                                        <div className="hidden justify-center md:flex">
+                                        <div className="hidden justify-center tablet:flex" onKeyDown={handleKeyDown}>
                                             <div className="input-group relative flex flex-wrap items-stretch w-full ml-6">
-                                                <input type="search" className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
+                                                <input type="search" onChange={handleInputChange} name="search" value={values.search} className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
                                                 <SearchIcon className="absolute right-0 top-0 mt-3 mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
                                             </div>
                                         </div>
@@ -134,14 +141,43 @@ const Navbar = () => {
                                     </Menu>
                                 </div>
                             ) : (
-                                <div className='inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
+                                <div className='hidden inset-y-0 right-0 flex items-center pr-2 sm:block sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
                                     <div class="flex space-x-2 justify-center">
-                                        <button type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium leading-tight rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Login</button>
-                                        <button type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium leading-tight rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Register</button>
+                                        <button type="button" class="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Login</button>
+                                        <button type="button" class="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Register</button>
                                     </div>
                                 </div>
                             )}
                         </div>
+                        <Disclosure.Panel className="sm:hidden">
+                            <div className="px-2 pt-2 pb-3 space-y-1">
+                                {navigationState.map((item) => (
+                                    <Disclosure.Button
+                                        key={item.name}
+                                        as="a"
+                                        href={item.href}
+                                        className={classNames(
+                                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                            'block px-3 py-2 rounded-md text-base font-medium text-center whitespace-no-wrap'
+                                        )}
+                                        aria-current={item.current ? 'page' : undefined}
+                                    >
+                                        {item.name}
+                                    </Disclosure.Button>
+                                ))}
+                                {token ? (  
+                                    <></>
+                                ):(<div className='text-white'>
+                                    <Disclosure.Button as="a" href="/login" className="block px-3 py-2 rounded-md text-base font-medium text-center whitespace-no-wrap">
+                                        Login
+                                    </Disclosure.Button>
+                                    <Disclosure.Button as="a" href="/register" className="block px-3 py-2 rounded-md text-base font-medium text-center whitespace-no-wrap">
+                                        Register
+                                    </Disclosure.Button>
+                                    </div>
+                                )}
+                            </div>
+                        </Disclosure.Panel>
                     </div>
                 </>
             )}

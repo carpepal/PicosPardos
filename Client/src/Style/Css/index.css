@@ -128,24 +128,6 @@ nav {
   padding: 0.5rem 0.5rem 0.5rem 0.8rem;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #e5e5e5;
-}
-form button {
-  padding: 1.5rem;
-  background: #2b0000;
-  border: 2px solid red;
-  color: red;
-}
-form button:active {
-  transform: translateY(4px);
-  box-shadow: inset -1rem -1rem 2em 0.4rem #910000;
-}
-
 html, body {
   height: 100vh;
   width: 100vw;
