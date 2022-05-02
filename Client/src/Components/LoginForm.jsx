@@ -24,14 +24,14 @@ const LoginForm = () => {
         if (Object.keys(error).length === 0) {
             console.log("Login");
             dispatch(LoginFetch({ username, password }));
+            navigate('/' , { replace: true });
         }
-        navigate('/' , { replace: true });
     }
 
     return (
         <Form name='login' handleSubmit={handleSubmit} >
             <h1 className="font-bold text-3xl">Login</h1>
-            <div className="w-full flex flex-col justify-center items-center p-4 w-full">
+            <div className="w-full flex flex-col justify-center items-center p-4 ">
                 <CustomInput name="username" type="text" label="Usuario" placeholder="Usuario"
                     handleInputChange={handleChange} value={username} error={error['username']} />
                 <CustomInput name="password" type="password" label="Contraseña" placeholder="Contraseña"
