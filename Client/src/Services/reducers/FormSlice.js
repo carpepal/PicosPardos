@@ -1,4 +1,5 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
+import {setUser} from '../reducers/UserSlice.js';
 
 export const RegisterFetch = createAsyncThunk(
     'register/post',
@@ -11,6 +12,7 @@ export const RegisterFetch = createAsyncThunk(
             body:JSON.stringify(data)
         });
         const json = await response.json();
+        if(json.token)dispatch(setUser(json.token));
         return json;
     }
 )
@@ -26,7 +28,7 @@ export const LoginFetch = createAsyncThunk(
             body:JSON.stringify(data)
         });
         const json = await response.json();
-        
+        if(json.token)dispatch(setUser(json.token));
         return json;
     }
 )
@@ -82,6 +84,7 @@ const LoginFormSlice = createSlice({
         //add async thunk for register
         [RegisterFetch.fulfilled]: (state, action) => {
             localStorage.setItem('token',action.payload.token);
+            
             state.success = action.payload.message;
             state.loading = false;
             state.register = false;

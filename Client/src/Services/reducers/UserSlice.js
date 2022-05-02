@@ -46,7 +46,7 @@ const UserSlice = createSlice({
     initialState: initialstate,
     reducers: {
         setUser(state, action) {
-            state.token = action.payload.token;
+            state.token = action.payload;
         },
         setError(state, action) {
             state.error = action.payload;
@@ -64,6 +64,7 @@ const UserSlice = createSlice({
         [verifyLogin.fulfilled]: (state, action) => {
             state.isloading = false;
             state.success = action.payload.success;
+            state.token = action.payload.token;
             state.error = '';
         },
         [verifyLogin.rejected]: (state, action) => {
@@ -87,6 +88,6 @@ const UserSlice = createSlice({
     }
 });
 
-export const {setUser , setError}  = UserSlice.actions;
+export const {setUser , setError , setSuccess}  = UserSlice.actions;
 
 export default UserSlice.reducer;

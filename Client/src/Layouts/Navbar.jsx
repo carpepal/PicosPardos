@@ -142,9 +142,9 @@ const Navbar = () => {
                                 </div>
                             ) : (
                                 <div className='hidden inset-y-0 right-0 flex items-center pr-2 sm:block sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-                                    <div class="flex space-x-2 justify-center">
-                                        <button type="button" class="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Login</button>
-                                        <button type="button" class="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Register</button>
+                                    <div className="flex space-x-2 justify-center">
+                                        <button type="button" className="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Login</button>
+                                        <button type="button" className="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Register</button>
                                     </div>
                                 </div>
                             )}

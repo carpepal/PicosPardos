@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate , } from 'react-router-dom';
 import { LoginFetch, setRegisterData, setRegisterError } from '../Services/reducers/FormSlice.js';
 import CustomInput from './CustomInput'
 import Form from './Form.jsx';
@@ -10,6 +10,7 @@ import Form from './Form.jsx';
 const LoginForm = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { username, password, error } = useSelector(state => state.Forms.loginData);
 
     const handleChange = ({ target: { name, value } }) => {
@@ -24,6 +25,7 @@ const LoginForm = () => {
             console.log("Login");
             dispatch(LoginFetch({ username, password }));
         }
+        navigate('/' , { replace: true });
     }
 
     return (
