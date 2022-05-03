@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CustomInput from './CustomInput'
 import { setRegisterData, RegisterFetch, setRegisterError } from '../Services/reducers/FormSlice.js'
-import {Link} from 'react-router-dom'
+import {Link , useNavigate} from 'react-router-dom'
 import Form from './Form'
 
 
@@ -11,6 +11,7 @@ const UserForm = () => {
 
   //dispatch para enviar los datos del formulario
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //selector del estado global de redux
   const { name, username, password, email, phone, error } = useSelector(state => state.Forms.registerData);
 
@@ -31,6 +32,8 @@ const UserForm = () => {
       dispatch(setRegisterError({ name: "registerData", data: { error } }));
       dispatch(RegisterFetch({ name, username, password, email, phone })).then(res => console.log(res));
       console.log('Enviado');
+      navigate('/' , { replace: true });
+      
     }
 
 

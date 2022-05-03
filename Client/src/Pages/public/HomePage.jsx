@@ -21,8 +21,8 @@ const Home = () => {
   const handleWheel = (e) => {
     e.preventDefault();
     scrollRef.current.scrollTo({
-      top:0,
-      left:scrollRef.current.scrollLeft + e.deltaY,
+      top: 0,
+      left: scrollRef.current.scrollLeft + e.deltaY,
     })
   }
 
@@ -47,7 +47,7 @@ const Home = () => {
           <div className='flex flex-row justify-start items-center w-full h-full overflow-x-scroll overflow-y-hidden' ref={scrollRef} onWheel={handleWheel}>
             {products.map(product => (
               <div key={product.id} className='w-1/6 h-full mx-3 px-2 my-2 py-2  flex-shrink-0 flex justify-center items-center '>
-                <img src={product.image} alt="producto recomendado" className='object-contain w-full  hover:scale-125 hover:transition-all '/>
+                <img src={product.image} alt="producto recomendado" className='object-contain w-full  hover:scale-125 hover:transition-all ' />
               </div>
             ))}
           </div>
@@ -61,5 +61,7 @@ function selectRecomendation(products) {
   let random = (Math.random() * 20);
   return products[Math.floor(random)];
 }
+
+
 
 export default Home

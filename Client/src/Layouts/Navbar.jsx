@@ -1,7 +1,7 @@
 import React from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon, SearchIcon } from "@heroicons/react/solid"
-import { NavLink } from 'react-router-dom'
+import { NavLink , Navigate , useNavigate} from 'react-router-dom'
 import CustomInput from '../Components/CustomInput'
 import { useForm } from '../Services/hooks/useForm.js'
 import Logo from '../Assets/Images/PicosPardos.png'
@@ -10,13 +10,13 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const navigation = [
-    { name: 'Catalogo', href: '#', current: true },
-    { name: 'Carrito', href: '#', current: false },
+    { name: 'Catalogo', href: '/', current: true },
+    { name: 'Carrito', href: '/carrito', current: false },
     { name: 'Contactos', href: '#', current: false },
-    { name: 'Pedidos', href: '#', current: false }
 ]
 const menu = [
     { name: 'Profile', href: '#', current: false },
+    { name: 'pedidos' , href:'#' , current: false },
     { name: 'Settings', href: '#', current: false },
     { name: 'Log out', href: '#', current: false },
 ]
@@ -30,7 +30,7 @@ const Navbar = () => {
     const { token } = useSelector(state => state.auth)
 
     const [values, handleInputChange, reset] = useForm({});
-
+    const navigate = useNavigate();
     const [navigationState, setNavigation] = useState(navigation);
     const [menuState, setMenu] = useState(menu)
 
@@ -143,8 +143,10 @@ const Navbar = () => {
                             ) : (
                                 <div className='hidden inset-y-0 right-0 flex items-center pr-2 sm:block sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
                                     <div className="flex space-x-2 justify-center">
-                                        <button type="button" className="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Login</button>
-                                        <button type="button" className="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Register</button>
+                                        <button  onClick={()=> navigate('/login')} 
+                                        className="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Login</button>
+                                        <button  onClick={()=> navigate('/register')} 
+                                        className="inline-block px-6 py-2.5 text-white font-medium leading-tight rounded hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Register</button>
                                     </div>
                                 </div>
                             )}
