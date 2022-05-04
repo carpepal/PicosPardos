@@ -1,7 +1,7 @@
 import {createSlice , createAsyncThunk} from '@reduxjs/toolkit';
 
 export const getProducts = createAsyncThunk('Products/getProducts', async () => {
-    const response = await fetch('https://fakestoreapi.com/products');
+    const response = await fetch('/api/public/productos');
     const json = await response.json();
     return json;
 });
@@ -15,7 +15,7 @@ const productsSlice = createSlice({
     },
     reducers: {
         setProducts(state, action) {
-            state.products = action.payload;
+            state.products = action.payload.productos;
         },
         setLoading(state, action) {
             state.isLoading = action.payload;
@@ -26,7 +26,7 @@ const productsSlice = createSlice({
     },
     extraReducers: {
         [getProducts.fulfilled]: (state, action) => {
-            state.products = action.payload;
+            state.products = action.payload.productos;
             state.isLoading = false;
         },
         [getProducts.pending]: (state, action) => {

@@ -52,6 +52,10 @@ export function getProductos(req , res){
           $project: {
             _id: 1,
             name: 1,
+            image: 1,
+            type:1,
+            alergeno:1,
+            rating:1,
             description: 1,
             price: 1,
             comments: 1
@@ -60,6 +64,11 @@ export function getProductos(req , res){
         { 
           "$group": {
             "_id": "$_id",
+            "name": { "$first": "$name" },
+            "image": { "$first": "$image" },
+            "type": { "$first": "$type" },
+            "alergeno": { "$first": "$alergeno" },
+            "rating": { "$first": "$rating" },
             "description": { "$first": "$description" },
             "price": { "$first": "$price" },
             "comments": { "$push": { "$first": "$comments" } }
