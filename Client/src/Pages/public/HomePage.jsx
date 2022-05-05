@@ -1,14 +1,25 @@
 import React from 'react'
 import { useRef } from 'react';
+import { useState } from 'react';
+import { useMemo } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Pagination from '../../Components/Pagination.jsx';
+import ProductCard from '../../Components/ProductCard.jsx';
 import { getProducts } from '../../Services/reducers/ProductsSlice.js';
 
 const Home = () => {
 
   const { isLoading, products } = useSelector(state => state.products);
   const dispatch = useDispatch();
-  const scrollRef = useRef(null);
+  const [currentPage , setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const currentDataTable = useMemo(() => {
+    const firstPage = (currentPage - 1) * pageSize;
+    const lastPage = firstPage + pageSize;
+    return products.slice(firstPage, lastPage);
+  }, [currentPage ,products]);
 
   console.log(products, isLoading);
 
@@ -17,14 +28,6 @@ const Home = () => {
     dispatch(getProducts());
 
   }, [])
-
-  const handleWheel = (e) => {
-    e.preventDefault();
-    scrollRef.current.scrollTo({
-      top: 0,
-      left: scrollRef.current.scrollLeft + e.deltaY,
-    })
-  }
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -42,16 +45,20 @@ const Home = () => {
             className='max-h-64 object-cover' />
         </div>
       </section>
-      <section className='h-1/3'>
-        <article className='w-full h-full p-5 m-5 border flex items-center' >
-          <div className='flex flex-row justify-start items-center w-full h-full overflow-x-scroll overflow-y-hidden' ref={scrollRef} onWheel={handleWheel}>
-            {products.map(product => (
-              <div key={product.id} className='w-1/6 h-full mx-3 px-2 my-2 py-2  flex-shrink-0 flex justify-center items-center '>
-                <img src={product?.image} alt="producto recomendado" className='object-contain w-full  hover:scale-125 hover:transition-all ' />
-              </div>
-            ))}
-          </div>
+      <section className='h-1/3 w-screen flex justify-center items-center p-3'>
+        <article className='w-11/12 h-full p-5 m-5  flex flex-wrap items-center ' >
+          <ProductCard producto={selectRecomendation(products)} />
+          {currentDataTable.map((product, index) => {
+            return <ProductCard key={index} producto={product} />
+            })}
+          <Pagination
+          className='w-full'
+          currentPage={currentPage}
+          totalCount={products.length}
+          pageSize={pageSize}
+          onPageChange={(page) => setCurrentPage(page)}/>
         </article>
+
       </section>
     </main>
   )
