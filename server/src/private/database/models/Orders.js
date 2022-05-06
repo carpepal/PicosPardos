@@ -9,12 +9,19 @@ const orders = new mongoose.Schema({
     },
     products: [
         {
-            type: mongoose.Types.ObjectId,
-            required: true,
-            ref: 'products'
+            _id: {
+                type: mongoose.Types.ObjectId,
+                required: true,
+                ref: 'products'
+            },
+            cantidad: {
+                type: Number,
+                required: true,
+                default: 1
+            }
         }
     ],
-    status:{
+    status: {
         type: String,
         required: true,
         enum: ['pending', 'delivered', 'canceled'],
@@ -25,7 +32,7 @@ const orders = new mongoose.Schema({
     },
     date_at: {
         type: Date,
-        required: true , 
+        required: true,
         default: new Date()
     }
 })

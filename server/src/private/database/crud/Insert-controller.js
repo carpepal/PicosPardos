@@ -154,10 +154,12 @@ export async function insertComment(comment){
     }
 }
 
-export async function insertOrder(order){
+export async function insertOrder(req , res){
+    let order = req.body;
     //valida los campos del pedido
     let fields = ["user_id" , "products" , "total_price"];
     let error = {};
+    order.user_id = res.locals.decode._id
     fields.forEach((value, index) => {
         if (value in order) {
             switch (order[value]) {
@@ -187,7 +189,9 @@ export async function insertOrder(order){
     return {
         _id: orderSave._id,
         user: orderSave.user_id,
-        product: orderSave.product_id,
+        products: orderSave.products,
+        status: orderSave.status,
+        total_price: orderSave.total_price
     }
 }
 
