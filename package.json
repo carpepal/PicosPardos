@@ -4,7 +4,7 @@
   "description": "tfg aplicacion web de un bar",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node ./server/build/index.js",
+    "start": "node ./server/build/index.js",
     "build": "babel ./server/src -d ./server/build",
     "nodemon": "nodemon ./server/src/index.js",
     "test": "node ./server/src/index.js"
