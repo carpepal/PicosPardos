@@ -1,10 +1,10 @@
 import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
-import {setUser} from '../reducers/UserSlice.js';
+import {setUser , setSuccess} from '../reducers/UserSlice.js';
 
 export const RegisterFetch = createAsyncThunk(
     'register/post',
     async (data,{getState,dispatch})=>{
-        const response = await fetch('/api/register',{
+        const response = await fetch('http://localhost:3000/api/register',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -12,7 +12,10 @@ export const RegisterFetch = createAsyncThunk(
             body:JSON.stringify(data)
         });
         const json = await response.json();
-        if(json.token)dispatch(setUser(json.token));
+        if(json.token){
+            dispatch(setUser(json.token))
+            dispatch(setSuccess(true));
+        };
         return json;
     }
 )
@@ -20,7 +23,7 @@ export const RegisterFetch = createAsyncThunk(
 export const LoginFetch = createAsyncThunk(
     'login/post',
     async (data , {getState,dispatch})=>{
-        const response = await fetch('/api/login',{
+        const response = await fetch('http://localhost:3000/api/login',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -28,7 +31,10 @@ export const LoginFetch = createAsyncThunk(
             body:JSON.stringify(data)
         });
         const json = await response.json();
-        if(json.token)dispatch(setUser(json.token));
+        if(json.token){
+            dispatch(setUser(json.token))
+            dispatch(setSuccess(true));
+        };
         return json;
     }
 )
@@ -84,7 +90,6 @@ const LoginFormSlice = createSlice({
         //add async thunk for register
         [RegisterFetch.fulfilled]: (state, action) => {
             localStorage.setItem('token',action.payload.token);
-            
             state.success = action.payload.message;
             state.loading = false;
             state.register = false;
@@ -125,12 +130,6 @@ const LoginFormSlice = createSlice({
 export const {
     setRegisterData,
     setRegisterError,
-    setLoginData,
-    setSuccess,
-    setError,
-    setLoading,
-    setRegister,
-    setLogin
 } = LoginFormSlice.actions;
 
 export default LoginFormSlice.reducer;

@@ -9,13 +9,17 @@
     "nodemon": "nodemon ./server/src/index.js",
     "test": "node ./server/src/index.js"
   },
+  "type":"module",
   "author": "",
   "license": "ISC",
-  "type": "module",
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.8",
     "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.10",
     "@babel/preset-env": "^7.16.11",
+    "@babel/runtime": "^7.17.9",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "nodemon": "^2.0.15"
   },
   "dependencies": {

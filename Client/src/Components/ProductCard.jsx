@@ -1,6 +1,7 @@
 import React from 'react'
 import { addProducto , removeProducto , clearLista  } from '../Services/reducers/CarritoSlice'
 import { useDispatch , useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const producto = {
   _id:{"$oid":"62619721fc13ae3bb100021b"},
@@ -27,15 +28,15 @@ const ProductCard = (props) => {
   let contador = lista.find(item=>producto._id === item._id)?.cantidad;
 
   return (
-    <div class="min-w-1/5 h-full min-h-max mx-2  bg-white rounded-lg border border-gray-200 shadow-md hover:scale-110 dark:bg-gray-800">
-      <a href='#'>
-        <img class="rounded-t-lg" src={producto?.image} alt={producto?.name}/>
-      </a>
-      <div className="p-5">
-        <a href='#'>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">{producto?.name}</h3>
-        </a>
-        <p class="text-gray-700 dark:text-gray-300">{producto?.price}€</p>
+    <div className="w-60 h-72 min-h-max mx-2 my-2  bg-white rounded-lg border border-gray-200 shadow-md hover:scale-110 dark:bg-gray-800">
+      <Link to='#'>
+        <img className="rounded-t-lg w-full h-1/2" src={producto?.image} alt={producto?.name}/>
+      </Link>
+      <div className="p-5 h-1/4">
+        <Link to='#'>
+          <h3 className="text-lg text-ellipsis font-bold text-gray-900 dark:text-gray-100">{producto?.name}</h3>
+        </Link>
+        <p className="text-gray-700 dark:text-gray-300">{producto?.price}€</p>
       </div>
       <div className="p-5 flex justify-center items-center mb-3">
         <button onClick={handleAddProducto} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">+</button>

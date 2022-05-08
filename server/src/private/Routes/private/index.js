@@ -30,5 +30,11 @@ router.route('/comments')
     .get(find.getComments)
     .post(insert.insertComment);
 
+router.route('/isLogged')
+    .all(auth.isLogged);
+
+router.route('/isAdmin')
+    .all(auth.isAdmin);
+
 export default router;
 

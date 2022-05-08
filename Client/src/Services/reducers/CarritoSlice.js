@@ -1,5 +1,18 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 
+const postOrders = createAsyncThunk("carrito/postOrder", async (pedido) => {
+    const response = await fetch("http://localhost:3000/api/public/pedidos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            product: pedido.lista,
+            estado: "pendiente",
+        }),
+    }).then((res) => res.json()).then((data) => console.log(data));
+});
+
 
 const CarritoSlice = createSlice({
     name: "carrito",
@@ -52,7 +65,13 @@ const CarritoSlice = createSlice({
         },
     },
     extraReducers: {
-        
+        [postOrders.fulfilled]: (state, action) => {
+            state.lista= [];
+            state.total= 0;
+        },
+        [postOrders.rejected]: (state, action) => {
+            state.error= action.payload;
+        },
     }
 
 });

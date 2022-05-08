@@ -141,5 +141,43 @@ export async function verifyAdminRole(req , res , next){
     }
 }
 
+export async function isLogged(req , res){
+    let {payload} = res.locals.decode;
+    let user = await Users.findOne({_id: payload.id})
+    if(Object.keys(user).length !== 0){
+        res.status(200).json({
+            isLogged: true
+        });
+    }else{
+        res.status(404).json({
+            error:true,
+            message: "No se encontro el usuario"
+        })
+    }
+
+}
+
+export async function isAdmin(req , res){
+    let {payload} = res.locals.decode;
+    let user = await Users.findOne({_id: payload.id})
+    if(Object.keys(user).length !== 0){
+        if(user.role === "admin"){
+            res.status(200).json({
+                isAdmin: true
+            });
+        }else{
+            res.status(200).json({
+                isAdmin: false
+            });
+        }
+    }else{
+        res.status(404).json({
+            error:true,
+            message: "No se encontro el usuario"
+        })
+    }
+}
+
+
 
 

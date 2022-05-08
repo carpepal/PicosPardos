@@ -1,7 +1,7 @@
 import React from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon, SearchIcon } from "@heroicons/react/solid"
-import { NavLink , Navigate , useNavigate} from 'react-router-dom'
+import { NavLink , Navigate , useNavigate, Link} from 'react-router-dom'
 import CustomInput from '../Components/CustomInput'
 import { useForm } from '../Services/hooks/useForm.js'
 import Logo from '../Assets/Images/PicosPardos.png'
@@ -15,8 +15,8 @@ const navigation = [
     { name: 'Contactos', href: '#', current: false },
 ]
 const menu = [
-    { name: 'Profile', href: '#', current: false },
-    { name: 'pedidos' , href:'#' , current: false },
+    { name: 'Profile', href: '/user', current: false },
+    { name: 'pedidos' , href:'/user/cart' , current: false },
     { name: 'Settings', href: '#', current: false },
     { name: 'Log out', href: '#', current: false },
 ]
@@ -71,9 +71,9 @@ const Navbar = () => {
                                 <div className="hidden sm:block sm:ml-6 sm:items-stretch">
                                     <div className="flex space-x-4 items-center">
                                         {navigationState.map((item) => (
-                                            <a
+                                            <Link
                                                 key={item.name}
-                                                href={item.href}
+                                                to={item.href}
                                                 className={classNames(
                                                     item.current ? 'text-white navbar-current' : 'text-gray-300 hover:bg-gray-700 hover:text-white navbar-link-hover',
                                                     'px-3 py-2 rounded-md text-sm font-medium'
@@ -81,7 +81,7 @@ const Navbar = () => {
                                                 aria-current={item.current ? 'page' : undefined}
                                             >
                                                 {item.name}
-                                            </a>
+                                            </Link>
                                         ))}
                                         <div className="hidden justify-center tablet:flex" onKeyDown={handleKeyDown}>
                                             <div className="input-group relative flex flex-wrap items-stretch w-full ml-6">
@@ -127,12 +127,12 @@ const Navbar = () => {
                                                 {menuState.map(item => (
                                                     <Menu.Item key={item.name}>
                                                         {({ active }) => (
-                                                            <a
-                                                                href={item.href}
+                                                            <Link
+                                                                to={item.href}
                                                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                             >
                                                                 {item.name}
-                                                            </a>
+                                                            </Link>
                                                         )}
                                                     </Menu.Item>
                                                 ))}

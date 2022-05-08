@@ -12,51 +12,58 @@ const RegisterPage = lazy(() => import('./Pages/public/RegisterPage'))
 const AdminPage = lazy(() => import('./Pages/admin/AdminPage'))
 const UserPage = lazy(() => import('./Pages/user/UserPage'))
 const ErrorPage = lazy(() => import('./Pages/ErrorPage'))
+const CartPage = lazy(() => import('./Pages/user/CartPage'));
 
 const PicosPardos = () => {
   return (
     <>
       <Navbar />
       <Suspense fallback={<Loading />}>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <HomePage />
-          } />
-        <Route
-          path='/login'
-          element={
-            <LoginPage />
-          } />
-        <Route
-          path='/register'
-          element={
-            <RegisterPage />
-          } />
-        <Route
-          path='/admin'
-          element={
-            <PrivateRoute>
-              <AdminRoute>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <HomePage />
+            } />
+          <Route
+            path='/login'
+            element={
+              <LoginPage />
+            } />
+          <Route
+            path='/register'
+            element={
+              <RegisterPage />
+            } />
+          <Route
+            path='/admin'
+            element={
+              <PrivateRoute>
+                <AdminRoute>
                   <AdminPage />
-              </AdminRoute>
-            </PrivateRoute>
-          } />
-        <Route
-          path='/user'
-          element={
-            <PrivateRoute>
-              <UserPage />
-            </PrivateRoute>
-          } />
-        <Route
-          path='*'
-          element={
-            <ErrorPage />
-          } />
+                </AdminRoute>
+              </PrivateRoute>
+            } />
+          <Route
+            path='/user'
+            element={
+              <PrivateRoute>
+                <UserPage />
+              </PrivateRoute>
+            }>
+            <Route path='/user/cart'
+              element={
+                <PrivateRoute>
+                  <CartPage />
+                </PrivateRoute>} />
+          </Route>
+          <Route
+            path='*'
+            element={
+              <ErrorPage />
+            } />
 
-      </Routes>
+        </Routes>
       </Suspense>
     </>
   )

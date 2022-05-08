@@ -155,25 +155,43 @@ export async function insertComment(comment){
 }
 
 export async function insertOrder(req , res){
-    let order = req.body;
+    let body = req.body;
     //valida los campos del pedido
     let fields = ["user_id" , "products" , "total_price"];
-    let error = {};
-    order.user_id = res.locals.decode._id
-    fields.forEach((value, index) => {
-        if (value in order) {
-            switch (order[value]) {
-                case "" || null || undefined || 0:
-                    error[value] = "required";
-                default:
-                    break;
-            }
-        }else{
-            error[value] = "required";
-        }
-    })
-    if (Object.keys(error).length !== 0) {
-        throw error;
+    // let error = {};
+    // order.user_id = res.locals.decode._id
+    // fields.forEach((value, index) => {
+    //     if (value in order) {
+    //         switch (order[value]) {
+    //             case "" || null || undefined || 0:
+    //                 error[value] = "required";
+    //             default:
+    //                 break;
+    //         }
+    //     }else{
+    //         error[value] = "required";
+    //     }
+    // })
+    // if (Object.keys(error).length !== 0) {
+    //     throw error;
+    // }
+    if(body.product.length === 0){
+        res.status(400).json({message: "no hay productos"});
+    }
+    let productos = [];
+    let total = 0;
+    body.product.forEach(producto => {
+         productos.push({_id: producto._id , cantidad: producto.cantidad});
+         total += producto.cantidad * producto.price;
+    });
+    
+
+    let order = {
+        ...productos,
+        user_id: res.locals.decode._id,
+        total_price: total,
+        date_at: new Date(),
+        status: "pendiente"
     }
 
     //crea el pedido
@@ -194,5 +212,7 @@ export async function insertOrder(req , res){
         total_price: orderSave.total_price
     }
 }
+
+
 
 

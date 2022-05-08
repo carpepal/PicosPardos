@@ -37,7 +37,7 @@ app.use('/api' , api);//rutas del api
 
 //ruta general del servidor
 app.get('/*' , (req , res)=>{
-    console.log();
+    console.log(req.originalUrl);
     res.sendFile(process.cwd()+"/Client/build/index.html");
 })
 
