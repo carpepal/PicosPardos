@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.70701e8b.css",
+    "main.js": "/static/js/main.52e8a5cb.js",
+    "static/js/76.8d3143e5.chunk.js": "/static/js/76.8d3143e5.chunk.js",
+    "static/js/4.269cdfff.chunk.js": "/static/js/4.269cdfff.chunk.js",
+    "static/js/713.722ad948.chunk.js": "/static/js/713.722ad948.chunk.js",
+    "static/js/743.f24990c6.chunk.js": "/static/js/743.f24990c6.chunk.js",
+    "static/js/332.7f56d5e0.chunk.js": "/static/js/332.7f56d5e0.chunk.js",
+    "static/js/733.01370a02.chunk.js": "/static/js/733.01370a02.chunk.js",
+    "static/media/PicosPardos.png": "/static/media/PicosPardos.452996eafd88cafff8fe.png",
+    "index.html": "/index.html",
+    "main.70701e8b.css.map": "/static/css/main.70701e8b.css.map",
+    "main.52e8a5cb.js.map": "/static/js/main.52e8a5cb.js.map",
+    "76.8d3143e5.chunk.js.map": "/static/js/76.8d3143e5.chunk.js.map",
+    "4.269cdfff.chunk.js.map": "/static/js/4.269cdfff.chunk.js.map",
+    "713.722ad948.chunk.js.map": "/static/js/713.722ad948.chunk.js.map",
+    "743.f24990c6.chunk.js.map": "/static/js/743.f24990c6.chunk.js.map",
+    "332.7f56d5e0.chunk.js.map": "/static/js/332.7f56d5e0.chunk.js.map",
+    "733.01370a02.chunk.js.map": "/static/js/733.01370a02.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.70701e8b.css",
+    "static/js/main.52e8a5cb.js"
+  ]
+}
