@@ -1,6 +1,6 @@
 import Users from '../database/models/Users.js'//import esquema de usuario
 import jsonwebtoken from 'jsonwebtoken';//import jsonwebtoken libreria para generar token
-import { insertUser } from '../database/crud/Insert-controller.js';//import insertar usuarios
+import { insertUser } from '../database/crud/insert-controller.js';//import insertar usuarios
 
 
 /**
