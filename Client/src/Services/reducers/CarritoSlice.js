@@ -1,7 +1,7 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 
 const postOrders = createAsyncThunk("carrito/postOrder", async (pedido) => {
-    const response = await fetch("http://localhost:3000/api/public/pedidos", {
+    const response = await fetch("/api/public/pedidos", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

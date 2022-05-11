@@ -14,7 +14,7 @@ export const verifyLogin = createAsyncThunk(
     "Login/verify",
     async (data, { getState, dispatch }) => {
         let token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3000/api/verify", {
+        const response = await fetch("/api/verify", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const verifyAdminRole = createAsyncThunk(
     "Login/verifyAdmin",
     async (data, { getState, dispatch }) => {
         let token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3000/api/verifyAdmin", {
+        const response = await fetch("/api/verifyAdmin", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

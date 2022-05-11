@@ -4,7 +4,7 @@ import {setUser , setSuccess} from '../reducers/UserSlice.js';
 export const RegisterFetch = createAsyncThunk(
     'register/post',
     async (data,{getState,dispatch})=>{
-        const response = await fetch('http://localhost:3000/api/register',{
+        const response = await fetch('/api/register',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -23,7 +23,7 @@ export const RegisterFetch = createAsyncThunk(
 export const LoginFetch = createAsyncThunk(
     'login/post',
     async (data , {getState,dispatch})=>{
-        const response = await fetch('http://localhost:3000/api/login',{
+        const response = await fetch('/api/login',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
